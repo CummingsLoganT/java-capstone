@@ -61,6 +61,7 @@ public class LibraryServiceImpl {
         if (libraryOptional.isPresent()) {
             return Optional.of(new LibraryDto(libraryOptional.get()));
         }
+
         return Optional.empty();
     }
 
