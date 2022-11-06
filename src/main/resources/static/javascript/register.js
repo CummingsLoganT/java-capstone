@@ -6,11 +6,7 @@ const headers = {
         'Content-Type':'application/json'
 }
 
-const baseUrl = 'http://localhost"8008/users'
-
-
-
-
+const baseUrl = 'http://localhost:8080/user'
 
 const handleSubmit = async (e) =>{
     e.preventDefault()
@@ -26,16 +22,15 @@ const handleSubmit = async (e) =>{
         headers: headers
     })
 
-    .catch(err => console.error(err.message))
+        .catch(err => console.error(err.message))
 
 
-    const reponseArr = await response.json()
+    const responseArr = await response.json()
 
-    if (response.stauts === 200) {
+    if (response.status === 200) {
         window.location.replace(responseArr[0])
     }
 
-//   I don't think we actually need this because of the switch to impl. we shall see window.location.href = 'http://localhost"8008/home.html'
 }
 
 

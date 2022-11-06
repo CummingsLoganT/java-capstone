@@ -15,7 +15,7 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-const baseUrl = "http://localhost:8080/libraries"
+const baseUrl = "http://localhost:8080/user"
 
 
 //2
@@ -32,16 +32,19 @@ const handleSubmit = async (e) => {
     let bodyObj = {
         body: document.getElementById("note-input").value
     }
-    await addNote(bodyObj) {
-        const response = await fetch(`${baseUrl}user/${userId}` , {
-            method:"POST" ,
-            body: JSON.stringify(obj) ,
-            headers: headers
-        })
-            .catch(err => console.error(err.message))
-        if (response.status === 200) {
-            return GeolocationCoordinates(userId);
-        }
+    await addNote(bodyObj);
+    document.getElementById("note-input").value = ''
+}
+       
+async function addNote(obj) {
+    const response = await fetch (`${baseUrl}user/${userId}` , {
+        method: "POST" ,
+        body: JSON.stringify(obj) ,
+        headers: headers
+    })
+        .catch(err => console.error(err.message))
+    if (response.status == 200) {
+        return getNotes(userId);
     }
 }
 
@@ -117,3 +120,16 @@ const createNoteCards = (array) => {
         noteContainer.append(noteCard);
     })
 }
+
+const populateModal = (obj) =>{
+    noteBody.innerText = ''
+    noteBody.innerText = obj.body
+    updateNoteBtn.setAttribute('data-note-id' , obj.id)
+}
+
+getNotes(userId);
+
+submitForm.addEventListener('click' , (e)=>{
+    let noteId = e.target.getAttribute('data-note-id')
+    handleNoteEdit(noteId);
+})

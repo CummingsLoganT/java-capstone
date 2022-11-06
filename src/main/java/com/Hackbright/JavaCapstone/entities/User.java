@@ -43,5 +43,4 @@ public class User {
             this.password = userDto.getPassword();
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.Hackbright.JavaCapstone.entities;
 
+import com.Hackbright.JavaCapstone.dtos.FlashcardDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,4 +30,15 @@ public class Flashcards {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Flashcards (FlashcardDto flashcardDto) {
+        if (flashcardDto.getId() != null) {
+            this.id = flashcardDto.getId();
+        }
+        if (flashcardDto.getFront() != null) {
+            this.front = flashcardDto.getFront();
+        }
+        if (flashcardDto.getBack() != null) {
+            this.back = flashcardDto.getBack();
+        }
+    }
 }
