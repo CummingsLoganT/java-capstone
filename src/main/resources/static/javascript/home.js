@@ -15,7 +15,7 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-const baseUrl = "http://localhost:8080/user"
+const baseUrl = "http://localhost:8080/api/v1/users"
 
 
 //2
@@ -37,7 +37,7 @@ const handleSubmit = async (e) => {
 }
        
 async function addNote(obj) {
-    const response = await fetch (`${baseUrl}user/${userId}` , {
+    const response = await fetch (`${baseUrl}/user/${userId}` , {
         method: "POST" ,
         body: JSON.stringify(obj) ,
         headers: headers
@@ -50,7 +50,7 @@ async function addNote(obj) {
 
 //4
 async function getNotes(userId) {
-    await fetch(`${baseUrl}user/${userId}` , {
+    await fetch(`${baseUrl}/user/${userId}` , {
         method: "GET" ,
         headers: headers
     })

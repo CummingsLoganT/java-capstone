@@ -9,15 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/library")
+@RequestMapping(value = "/api/v1/library")
 public class LibraryController {
-
     @Autowired
     private LibraryService libraryService;
-
-//    public LibraryController(LibraryService libraryService) {
-//        this.libraryService = libraryService;
-//    }
 
     @GetMapping("/user/{userId}")
     public List<LibraryDto> getNotesByUser(@PathVariable Long userId) {
