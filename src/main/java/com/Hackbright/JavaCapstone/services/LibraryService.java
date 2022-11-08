@@ -2,10 +2,12 @@ package com.Hackbright.JavaCapstone.services;
 
 import com.Hackbright.JavaCapstone.dtos.LibraryDto;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface LibraryService{
     List<LibraryDto> getAllNotesByUserId(Long userId);
     @Transactional

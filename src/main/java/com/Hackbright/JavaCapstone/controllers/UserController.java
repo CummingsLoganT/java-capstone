@@ -5,10 +5,7 @@ import com.Hackbright.JavaCapstone.dtos.UserDto;
 import com.Hackbright.JavaCapstone.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,8 @@ public class UserController {
 
     @PostMapping("/register")
     public List<String> addUser(@RequestBody UserDto userDto) {
+        System.out.println("===================================================================");
+        System.out.println("=================================,  addUser is called!!!");
         String passHash = passwordEncoder.encode(userDto.getPassword());
         userDto.setPassword(passHash);
         return userService.addUser(userDto);
@@ -31,7 +30,27 @@ public class UserController {
 
     @PostMapping("/login")
     public List<String> userLogin(@RequestBody UserDto userDto) {
+        System.out.println("===================================================================");
+        System.out.println("=================================,  userLogin is called!!!");
         return userService.userLogin(userDto);
+    }
+
+    @GetMapping
+    public List<UserDto> getAllUsers() {
+        System.out.println("===================================================================");
+        System.out.println("=================================,  getAllUsers() is called!!!");
+        List<UserDto> userDtoList = this.userService.findAll();
+        displayUserDtoList(userDtoList);
+        return userDtoList;
+    }
+
+    private void displayUserDtoList(List<UserDto> userDtoList) {
+        System.out.println("================= the total userDto size =" + userDtoList.size());
+        int index = 1;
+        for(UserDto userDto : userDtoList){
+            System.out.println("\t UserDto No.{}, = {}" + userDto);
+            index++;
+        }
     }
 
 }

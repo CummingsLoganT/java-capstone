@@ -3,8 +3,10 @@
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
+console.log(cookieArr[1])
+
 //DOM Elements
-const submitForm = document.getElementById("note-form")
+const submitForm = document.getElementById("submit-button")
 const noteContainer = document.getElementById("note-container")
 
 //Modal Elements
@@ -34,23 +36,24 @@ const handleSubmit = async (e) => {
     }
     await addNote(bodyObj);
     document.getElementById("note-input").value = ''
-}
-       
-async function addNote(obj) {
-    const response = await fetch (`${baseUrl}/user/${userId}` , {
-        method: "POST" ,
-        body: JSON.stringify(obj) ,
-        headers: headers
-    })
+    
+    async function addNote(obj) {
+        
+        const response = await fetch (baseUrl + `/user/` + userId , {
+            method: "POST" ,
+            body: JSON.stringify(obj) ,
+            headers: headers
+        })
         .catch(err => console.error(err.message))
-    if (response.status == 200) {
-        return getNotes(userId);
+        if (response.status == 200) {
+            return getNotes(userId);
+        }
     }
 }
-
+    
 //4
 async function getNotes(userId) {
-    await fetch(`${baseUrl}/user/${userId}` , {
+    await fetch(baseUrl + `/user/` + userId , {
         method: "GET" ,
         headers: headers
     })
@@ -70,21 +73,21 @@ async function getNoteById(noteId){
         .catch(err => console.err(err.message))
 }
 
-async function handleNoteEdit(noteId) {
-    let bodyObj = {
-        id: noteId ,
-        body: noteBody.value
-    }
+// async function handleNoteEdit(noteId) {
+//     let bodyObj = {
+//         id: noteId ,
+//         body: noteBody.value
+//     }
 
-    await fetch(baseUrl , {
-        method: "PUT" ,
-        body: JSON.stringify(bodyObj) ,
-        headers: headers
-    })
-        .catch(err => console.error(err))
+//     await fetch(baseUrl , {
+//         method: "PUT" ,
+//         body: JSON.stringify(bodyObj) ,
+//         headers: headers
+//     })
+//         .catch(err => console.error(err))
 
-    return getNotes(userId);
-}
+//     return getNotes(userId);
+// }
 
 //6
 async function handleDelete(noteId){
@@ -101,7 +104,7 @@ async function handleDelete(noteId){
 
 const createNoteCards = (array) => {
     noteContainer.innerHTML = ''
-    array.forEach(obj => {
+    Array.from(array).forEach(obj => {
         let noteCard = document.createElement("div")
         noteCard.classList.add("m-2")
         noteCard.innerHTML = `
@@ -127,9 +130,9 @@ const populateModal = (obj) =>{
     updateNoteBtn.setAttribute('data-note-id' , obj.id)
 }
 
-getNotes(userId);
+// getNotes(userId);
 
-submitForm.addEventListener('click' , (e)=>{
-    let noteId = e.target.getAttribute('data-note-id')
-    handleNoteEdit(noteId);
-})
+// submitForm.addEventListener('click' , (e)=>{
+//     let noteId = e.target.getAttribute('data-note-id')
+//     handleNoteEdit(noteId);
+// })

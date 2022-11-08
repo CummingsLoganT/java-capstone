@@ -45,4 +45,16 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    public List<UserDto> findAll() {
+        List<User> userList = userRepository.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for(User eachUser : userList) {
+            UserDto userDto = new UserDto(eachUser);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
+    }
+
+
+
 }
