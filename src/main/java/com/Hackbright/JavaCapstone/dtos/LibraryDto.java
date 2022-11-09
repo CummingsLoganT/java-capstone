@@ -14,7 +14,7 @@ public class LibraryDto implements Serializable {
 
     private Long id;
     private String index;
-    private UserDto userDto;
+//    private UserDto userDto;
 
     public LibraryDto(Library library) {
         if (library.getId() != null) {
@@ -23,5 +23,6 @@ public class LibraryDto implements Serializable {
         if (library.getIndex() != null) {
             this.index = library.getIndex();
         }
+
     }
 }

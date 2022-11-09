@@ -18,9 +18,9 @@ public class LibraryController {
     public List<LibraryDto> getNotesByUser(@PathVariable Long userId) {
         return libraryService.getAllNotesByUserId(userId);
     }
-    @GetMapping("/{index}")
-    public Optional<LibraryDto> getNoteById(@PathVariable Long index) {
-        return libraryService.getNoteById(index);
+    @GetMapping("/{noteId}")
+    public Optional<LibraryDto> getNoteById(@PathVariable Long noteId) {
+        return libraryService.getNoteById(noteId);
     }
 
     @PostMapping("/user/{userId}")
@@ -28,12 +28,12 @@ public class LibraryController {
         libraryService.addNote(libraryDto , userId);
     }
 
-    @DeleteMapping
-    public void deleteNoteById(@PathVariable Long index) {
-        libraryService.deleteNoteById(index);
+    @DeleteMapping("/{noteId}")
+    public void deleteNoteById(@PathVariable Long noteId) {
+        libraryService.deleteNoteById(noteId);
     }
 
-    @PutMapping
+    @PutMapping("/{noteId}")
     public void updateNote(@RequestBody LibraryDto libraryDto) {
         libraryService.updateNoteById(libraryDto);
     }
