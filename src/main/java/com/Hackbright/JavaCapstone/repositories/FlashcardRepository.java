@@ -1,7 +1,6 @@
 package com.Hackbright.JavaCapstone.repositories;
 
 import com.Hackbright.JavaCapstone.entities.Flashcards;
-import com.Hackbright.JavaCapstone.entities.Library;
 import com.Hackbright.JavaCapstone.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

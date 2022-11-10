@@ -5,14 +5,18 @@
  
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
-
-
-
 <style>
-
+/*
+!                                    FOUNDATIONAL
+*/
 html {
+    color: #000;
+}
 
+body {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
 }
 
 .scene {
@@ -22,100 +26,140 @@ html {
     position: absolute;
     height: 94vh;
     width: 100vw;
-    background: linear-gradient(135deg , #127 , #fffa);
+    background: linear-gradient(180deg , #127 , #fffa);
     color: aliceblue;
 }
 
-body {
-    position: absolute;
-    /* background-color: #fffa; */
-    height: 100vh;
-    width: 100vw;
+.container-fluid {
+background: radial-gradient(#000a , #111);
+grid-column: span 3;
+grid-row: span 2;
+display: grid;
+grid-template-columns: repeat(4 , 1fr);
+grid-template-rows: repeat(4 , 1fr);
+box-shadow: 0 0 3px 3px #fffa;
+overflow: hidden;
+}
+
+/*
+!                                    CARD ELEMENTS
+*/                                        
+.index {
+    display: grid;
+    background: #fff;   
+    opacity: 1;
+    grid-template-columns: 1fr 1fr;
+    background: radial-gradient(#0dcaf0 , #159);
+    grid-gap: 6.9px;
+
+}
+.card {
+    box-shadow: 0 0 2px 2px #000a;
+}
+
+.flash-index {
+    display: grid;
+    background: #000a;
+    color: #fff;
+    height: 10vh;
+    opacity: 1;
+    border: 2px solid #0dcaf0;
+    box-shadow: 0 0 3px 3px #fffa;
+}
+
+.flashcard {
+    color: #000;
+    height: 6vh;
+    width: 9vw;
+    /* background: #fffa; */
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
 }
 
 .card-text {
-    background: #fffa;
+    display: grid;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    opacity: 50;
-    color: #fffa;
+    background: #000a;
+    color: #fff;
+    grid-column: span 2;
+    user-select: none;
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+}
+.card-text:active {
+    animation: expand 1s linear forwards;
+}
 
+
+.flashcard-text {
+    display: grid;
+    grid-row: 2;
+    grid-column: 2;
+    justify-content: center;
+    height: 3rem;
+    width: 12rem;
+    background: #fff;
+}
+.flashcard-text:active {
+    animation: flip .5s linear forwards;
+}
+
+
+.btn-delete {
+    background-color: #611;
+    color: #fff;
+    border-radius: 33%;
+    display: grid;
+    max-width: 2vw;
+    max-height: 3vh;
+}
+
+.topper {
+    height: 6vh;
+    background: linear-gradient(69deg , #000 , #0dcaf0);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .library {
-    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: repeat(6 , 1fr);
+    grid-column: span 2;
+    grid-row: 1;
 }
 
-.index {
-    background: #fffa;
-    color: #fffa;
+.form-group {
+    width: 50%;
+    float: right;
+    padding-top: 175px;
 }
 
-.index:active {
-    animation: expand .5s ease-out forwards;
-
-}
-
-.card-text:active {
-    /* transform: scaleX(2); */
-    /* width: 20rem;
-    height: 20rem;*/
-    /* white-space: normal; */
-    animation: expand .5s ease-out forwards;
-    opacity: 100;
-    /* position: fixed; */
-    /* transform: translateX(150px); */
-}
-
-@keyframes expand {
-    0%   {width: 10rem;}
-    50%  {width: 30rem;}
-    95%  {white-space: normal;}
-    100% {width: 30rem; height: 10rem; white-space: normal;
-        color: #000;
-    /* transform: translateX(100%); */
-    /* transform: translate3d(12px, 50%, 3em) */
-
-    }
-}
-
-.btn-delete {
-    background-color: #611a;
+.flashcardify {
+    max-width: 2vw;
+    max-height: 3vh;
+    /* height: 4vh; */
+    background: #000a;
+    color: #fff;
     border-radius: 33%;
-}
-
-
-.topper {
-
-    height: 6vh;
-    background: #000a;
-
-    /* visibility: hidden; */
-}
-
-.m-2 {
-    position: relative;
     display: grid;
-    height: 3vh;
+    float: right;
 }
 
-.m-3 {
-    
+
+
+#submit-button {
+    float: right;
 }
 
-.card {
-    background: #fffa;
+#note-form {}
+
+#front-text {
+    background: radial-gradient(#000 , #222);
 }
-
-.container-fluid {
-
-    background: #000a;
-    grid-column: span 3;
-    grid-row: span 2;
-    display: grid;
-    grid-template-columns: repeat(12 , 1fr);
-    /* grid-template-rows: repeat(4 , 1fr); */
+#back-text {
+    background: radial-gradient(#0dcaf0 , #111);
 }
 
 #home-container {
@@ -124,72 +168,61 @@ body {
     display: grid;
 }
 
-.library {
-    display: grid;
-    grid-template-columns: repeat(6 , 1fr);
-    grid-column: span 2;
+
+@keyframes expand {
+    0%   {}  
+    33%  {width: 12.5rem;}
+    66%  {width: 25rem; height: 6.6rem;}
+    95%  {white-space: normal;}
+    100% 
+         {
+          width: 30rem; height: 10rem; white-space: normal;
+          color: #fff;
+         }
 }
+
+@keyframes flip {
+    0%   {}
+    100% { transform: rotateX(90deg); }
+}
+
 
 </style>
 
+<title>Flox</title>
 
-
-
-
-<title>Home</title>
 </head>
 <body>
-<div class="topper">
-    <a class="btn btn-danger navbar-btn" 
-    href="./login.html">Login</a>
-    <a class="btn btn-danger navbar-btn" 
+    <div class="topper"
+    style=" padding: 10px;">
+    <h1 style="color: #fffa; width: 50%; display: grid;">FLOX</h1>
+
+    <a 
+    id="logout-button"
+    class="btn btn-danger navbar-btn" 
     href="./login.html" 
-    onclick="handleLogout()">
+    onclick="handleLogout()"
+    style="
+    grid-column: 8; border-radius: 17%; max-width: 6vw; max-height: 4vh;
+    ">
     Logout</a>
+
+
 </div>
+
 <div1 class="scene">
-    <div class="library" id="note-container">Hello, World!</div>
-
+    <div class="library" id="note-container"></div>
     <div class="container" id="home-container">
-
         <form id="note-form">
             <div class="form-group">
                 <textarea class="form-control" id="note-input" placeholder="Add your note..." rows="2"></textarea>
+                <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>
             </div>
-            <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>
         </form>
     </div>
     </div>
-
-    <div class="container-fluid" id="flash-container">
-
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="note-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="note-edit-modal-title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="note-edit-modal-title">Edit your note</h5>
-                    <button type="button" class="btn-close" data-bs-backdrop="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex">
-                    <textarea class="form-control" rows="1" id="note-body"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="update-note-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    <div class="container-fluid" id="flash-container"></div>
 </div1>
-
-
-
 
 <script src="./javascript/home.js" type="application/javascript"></script>
 

@@ -6,6 +6,8 @@ import com.Hackbright.JavaCapstone.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/flashcards")
 public class FlashcardController {
@@ -19,4 +21,11 @@ public class FlashcardController {
         flashcardService.addFlashcard(flashcardDto , userId);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<FlashcardDto> getFlashcardsByUser(@PathVariable Long userId) {
+        return flashcardService.getAllFlashcardsByUserId(userId);
+    }
+
+    @DeleteMapping("/{noteId}")
+    public void deleteFlashcardById(@PathVariable Long noteId) {flashcardService.deleteFlashcardById(noteId);}
 }
